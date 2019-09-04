@@ -26,7 +26,7 @@ class Client(models.Model):
         return '{}, {}'.format(self.last_name, self.first_name)
     
 
-class ListOrders(models.Model):
+class Order(models.Model):
     """
     Model representing a list of orders).
     """
