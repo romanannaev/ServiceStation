@@ -8,15 +8,6 @@ def index(request):
     """
     Функция отображения для домашней страницы сайта.
     """
-    # # Генерация "количеств" некоторых главных объектов
-    # num_books=Book.objects.all().count()
-    # num_instances=BookInstance.objects.all().count()
-    # # Доступные книги (статус = 'a')
-    # num_instances_available=BookInstance.objects.filter(status__exact='a').count()
-    # num_authors=Author.objects.count()  # Метод 'all()' применен по умолчанию.
-    
-    # # Отрисовка HTML-шаблона index.html с данными внутри 
-    # # переменной контекста context
     return render(
         request,
         'index.html',
@@ -45,3 +36,47 @@ class OrderListView(generic.ListView):
 
 class OrderDetailView(generic.DetailView):
     model = Order
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Client, Car, Order
+
+#added Client forms
+class ClientCreate(CreateView):
+    model = Client
+    fields = '__all__'
+    initial={'date_of_birth':'20/02/1992',}
+
+class ClientUpdate(UpdateView):
+    model = Client
+    fields = ['first_name','last_name','date_of_birth','address', 'phone', 'email']
+
+class ClientDelete(DeleteView):
+    model = Client
+    success_url = reverse_lazy('clients')
+
+#added Car forms 
+class CarCreate(CreateView):
+    model = Car
+    fields = '__all__'
+
+class CarUpdate(UpdateView):
+    model = Car
+    fields = '__all__'
+
+class CarDelete(DeleteView):
+    model = Car
+    success_url = reverse_lazy('cars')
+
+#added Order forms 
+class OrderCreate(CreateView):
+    model = Order
+    fields = '__all__'
+
+class OrderUpdate(UpdateView):
+    model = Order
+    fields = '__all__'
+
+class OrderDelete(DeleteView):
+    model = Order
+    success_url = reverse_lazy('orders')
