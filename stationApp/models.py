@@ -17,8 +17,13 @@ class Client(models.Model):
         Returns the url to access a particular client instance.
         """
         return reverse('client-detail', args=[str(self.id)])
-    
 
+    def get_update_url(self):
+        return reverse('client_update', args=[str(self.id)])
+
+    def get_delete_url(self):
+        return reverse('client_delete', args=[str(self.id)])
+    
     def __str__(self):
         """
         String for representing the Model object.
@@ -49,7 +54,12 @@ class Order(models.Model):
         """
         return reverse('order-detail', args=[str(self.id)])
 
-        
+    def get_update_url(self):
+        return reverse('order_update', args=[str(self.id)])
+
+    def get_delete_url(self):
+        return reverse('order_delete', args=[str(self.id)])
+
     def __str__(self):
         """
         String for representing the Model object
@@ -75,7 +85,12 @@ class Car(models.Model):
         """
         return reverse('car-detail', args=[str(self.id)])
     
+    def get_update_url(self):
+        return reverse('car_update', args=[str(self.id)])
 
+    def get_delete_url(self):
+        return reverse('car_delete', args=[str(self.id)])
+    
     def __str__(self):
         """
         String for representing the Model object.

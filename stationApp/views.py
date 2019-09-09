@@ -1,8 +1,13 @@
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views import generic
+from .models import Client, Car, Order
+from django.urls import reverse_lazy
 from django.shortcuts import render
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 from .models import *
+
 
 def index(request):
     """
@@ -13,20 +18,22 @@ def index(request):
         'index.html',
     )
 
-from django.views import generic
 
 class ClientListView(generic.ListView):
     model = Client
 
-class ClientDetailView(generic.DetailView):
-    model = Client
 
+class ClientDetailView(generic.DetailView):
+    context_object_name = 'model'
+    model = Client
+    
 
 class CarListView(generic.ListView):
     model = Car
 
 
 class CarDetailView(generic.DetailView):
+    context_object_name = 'model'
     model = Car
 
 
@@ -35,48 +42,63 @@ class OrderListView(generic.ListView):
 
 
 class OrderDetailView(generic.DetailView):
+    context_object_name = 'model'
     model = Order
 
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from .models import Client, Car, Order
 
-#added Client forms
-class ClientCreate(CreateView):
+# added Client forms
+
+
+class ClientCreate(LoginRequiredMixin, CreateView):
     model = Client
     fields = '__all__'
-    initial={'date_of_birth':'20/02/1992',}
+    initial = {'date_of_birth': '20/02/1992', }
 
-class ClientUpdate(UpdateView):
+
+class ClientUpdate(LoginRequiredMixin, UpdateView):
     model = Client
-    fields = ['first_name','last_name','date_of_birth','address', 'phone', 'email']
+    fields = ['first_name', 'last_name',
+              'date_of_birth', 'address', 'phone', 'email']
 
-class ClientDelete(DeleteView):
+
+class ClientDelete(LoginRequiredMixin, DeleteView):
     model = Client
     success_url = reverse_lazy('clients')
+    raise_exception = True
 
-#added Car forms 
-class CarCreate(CreateView):
+# added Car forms
+
+
+class CarCreate(LoginRequiredMixin, CreateView):
     model = Car
     fields = '__all__'
 
-class CarUpdate(UpdateView):
+
+class CarUpdate(LoginRequiredMixin, UpdateView):
     model = Car
     fields = '__all__'
 
-class CarDelete(DeleteView):
+
+class CarDelete(LoginRequiredMixin, DeleteView):
     model = Car
     success_url = reverse_lazy('cars')
+    raise_exception = True
 
-#added Order forms 
-class OrderCreate(CreateView):
+# added Order forms
+
+
+class OrderCreate(LoginRequiredMixin, CreateView):
     model = Order
     fields = '__all__'
 
-class OrderUpdate(UpdateView):
+
+class OrderUpdate(LoginRequiredMixin, UpdateView):
     model = Order
     fields = '__all__'
+    
 
-class OrderDelete(DeleteView):
+
+class OrderDelete(LoginRequiredMixin, DeleteView):
     model = Order
     success_url = reverse_lazy('orders')
+    raise_exception = True

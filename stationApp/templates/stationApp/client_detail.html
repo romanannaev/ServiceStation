@@ -3,11 +3,11 @@
 {% block content %}
   <h1>Information:</h1>
 
-  <p><strong>First name:</strong> {{ client.first_name }}</p>
-  <p><strong>Last name:</strong> {{ client.last_name }}</p>
-  <p><strong>Birthday:</strong> {{ client.date_of_birth }}</p> 
-  <p><strong>Adsress:</strong> {{ client.address }}</p>  
-  <p><strong>Phone:</strong> {{ client.phone }}</p>  
-  <p><strong>E-mail:</strong> {{ client.email }}</p>  
+  <p><strong>First name:</strong> {{ model.first_name }}</p>
+  <p><strong>Last name:</strong> {{ model.last_name }}</p>
+  <p><strong>Birthday:</strong> {{ model.date_of_birth }}</p> 
+  <p><strong>Adsress:</strong> {{ model.address }}</p>  
+  <p><strong>Phone:</strong> {{ model.phone }}</p>  
+  <p><strong>E-mail:</strong> {{ model.email }}</p>  
   
 {% endblock %}
