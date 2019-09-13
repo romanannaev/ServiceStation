@@ -99,3 +99,32 @@ class Car(models.Model):
 
     class Meta:
         ordering = ["make"]
+
+class OrderApplication(models.Model):
+    """
+    Model representing a order application.
+    """
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=13, null=True, blank=True)
+    client = models.ForeignKey('Client', on_delete=models.SET_NULL, null=True)
+    date_pub = models.DateTimeField(auto_now_add=True)
+
+    def get_absolute_url(self):
+        """
+        Returns the url to access a particular client instance.
+        """
+        return reverse('application_detail' , args=[str(self.id)])
+
+    def get_delete_url(self):
+        return reverse('application_delete', args=[str(self.id)])
+    
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return '{}, {}({})'.format(self.last_name, self.first_name, self.date_pub)
+
+    class Meta:
+        ordering = ["-date_pub"]

@@ -29,3 +29,13 @@ urlpatterns += [
     url(r'^order/(?P<pk>\d+)/update/$', views.OrderUpdate.as_view(), name='order_update'),
     url(r'^order/(?P<pk>\d+)/delete/$', views.OrderDelete.as_view(), name='order_delete'),
 ]
+
+#added order application form and soon 
+urlpatterns += [  
+    url(r'^application/$', views.OrderApplicationCreate.as_view(), name='application_create'),
+    url(r'^application/grateful/$', views.get_grateful, name='grateful'),
+    url(r'^applications/$', views.OrderApplicationListView.as_view(), name='applications'),
+    url(r'^application/(?P<pk>\d+)$', views.OrderApplicationDetailView.as_view(), name='application_detail' ),
+    url(r'^application/(?P<pk>\d+)/delete$', views.OrderApplicationDelete.as_view(), name='application_delete' ),
+
+]

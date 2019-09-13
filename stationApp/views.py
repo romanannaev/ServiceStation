@@ -1,6 +1,6 @@
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import generic
-from .models import Client, Car, Order
+from .models import Client, Car, Order, OrderApplication
 from django.urls import reverse_lazy
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -17,7 +17,11 @@ def index(request):
         request,
         'index.html',
     )
-
+def get_grateful(request):
+    return render(
+        request,
+        'grateful_application.html',
+        )
 
 class ClientListView(generic.ListView):
     model = Client
@@ -45,7 +49,12 @@ class OrderDetailView(generic.DetailView):
     context_object_name = 'model'
     model = Order
 
+class OrderApplicationListView(generic.ListView):
+    model = OrderApplication
 
+class OrderApplicationDetailView(generic.DetailView):
+    context_object_name = 'model'
+    model = OrderApplication
 # added Client forms
 
 
@@ -101,4 +110,16 @@ class OrderUpdate(LoginRequiredMixin, UpdateView):
 class OrderDelete(LoginRequiredMixin, DeleteView):
     model = Order
     success_url = reverse_lazy('orders')
+    raise_exception = True
+
+#added forms order application
+
+class OrderApplicationCreate(CreateView):
+    model = OrderApplication
+    fields = ['first_name', 'last_name', 'phone']
+    success_url = reverse_lazy('grateful')
+    
+class OrderApplicationDelete(LoginRequiredMixin, DeleteView):
+    model = OrderApplication
+    success_url = reverse_lazy('applications')
     raise_exception = True

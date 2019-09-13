@@ -1,13 +1,30 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Information:</h1>
+<h1>Information:</h1>
 
-  <p><strong>First name:</strong> {{ model.first_name }}</p>
-  <p><strong>Last name:</strong> {{ model.last_name }}</p>
-  <p><strong>Birthday:</strong> {{ model.date_of_birth }}</p> 
-  <p><strong>Adsress:</strong> {{ model.address }}</p>  
-  <p><strong>Phone:</strong> {{ model.phone }}</p>  
-  <p><strong>E-mail:</strong> {{ model.email }}</p>  
-  
+<p><strong>First name:</strong> {{ model.first_name }}</p>
+<p><strong>Last name:</strong> {{ model.last_name }}</p>
+<p><strong>Birthday:</strong> {{ model.date_of_birth }}</p>
+<p><strong>Adsress:</strong> {{ model.address }}</p>
+<p><strong>Phone:</strong> {{ model.phone }}</p>
+<p><strong>E-mail:</strong> {{ model.email }}</p>
+<div style="margin-left:20px;margin-top:20px">
+	<h4>Cars:</h4>
+	{% if model.car_set.all %}
+    <dl>
+      {% for car in model.car_set.all  %}
+
+      <hr>
+
+	  <dt><a href="{% url 'car-detail' car.pk %}"> {{ car }}</a></dt>
+	  
+      <hr>
+      {% endfor %}
+    </dl>
+    {% else %}
+    <p>There are no cars in the client.</p>
+    {% endif %}
+</div>
+
 {% endblock %}

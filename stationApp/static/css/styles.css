@@ -2,14 +2,14 @@
     margin-top: 20px;
     padding-left: 10px;
     list-style: none;
-}
+} 
 
 .admin-panel {
     border: 1px solid #999;
     border-radius: 5px;
     position: fixed;
     left: 20px;
-    bottom: 320px;
+    bottom: 30px;
     opacity: 0.5; 
     padding: 10px;
 

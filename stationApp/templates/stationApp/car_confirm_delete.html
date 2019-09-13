@@ -2,13 +2,30 @@
 
 {% block content %}
 
-<h1>Delete Car</h1>
+	<h1>Delete Car</h1>
 
-<p>Are you sure you want to delete the car: {{ car }}?</p>
+	<p>Are you sure you want to delete the car: {{ car }}?</p>
 
-<form action="" method="POST">
-  {% csrf_token %}
-  <input type="submit" action="" value="Yes, delete." />
-</form>
+	{% if car.order_set.all %}
 
+		{% for order in car.order_set.all %}
+		
+			{% if order.status == 'p' %}
+			
+			<h3>You not can delete this car.This order isn't finished!</h3><a href="{% url 'order-detail' order.pk %}">( INFORMATION )</a>
+
+			{% endif %}
+
+		{% endfor %}
+			
+		
+		
+	{% else %}
+		
+		<form action="" method="POST">
+			{% csrf_token %}
+			<input type="submit" action="" value="Yes, delete." />
+		</form>
+
+	{% endif %}
 {% endblock %}

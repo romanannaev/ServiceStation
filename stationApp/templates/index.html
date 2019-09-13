@@ -6,4 +6,9 @@
 <p>Welcome to <em>Service Station</em>, a very basic Django website.</p>
 <p>The Service Station has the following content:</p>
 <h1>:(</h1>
+{% if not request.user.is_staff %}
+<div class="row">
+    <h3><a href="{% url 'application_create' %}">Make an order application!</a></h3>
+</div>
+{% endif %}
 {% endblock %}

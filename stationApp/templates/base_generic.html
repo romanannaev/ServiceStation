@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,10 +21,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <!-- Добавление дополнительного статического CSS файла -->
-    {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
 </head>
 
 <body>
@@ -47,6 +47,7 @@
                     <li><a href="{% url 'clients' %}">All Clients</a></li>
                     <li><a href="{% url 'cars' %}">All Cars</a></li>
                     <li><a href="{% url 'orders' %}">All Orders</a></li>
+                    <li><a href="{% url 'applications' %}">All Applications</a></li>
                 </ul>
                 {% endif %}
                 {% endblock %}
@@ -60,9 +61,10 @@
     {% if request.user.is_authenticated and request.user.is_staff %}
     <div class="admin-panel align-items-center">
         <a href="/admin" class="btn btn-outline-info">Admin</a>
-        
+
         <!-- Example single danger button -->
-        <div class="btn-group">
+        <div class="btn btn-light">
+            <!--important : button edit became normal -->
             <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 Create
