@@ -1,14 +1,14 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>This is site of Service Station</h1>
+<h1 style="color:DodgerBlue;">This is site of Service Station</h1>
 
-<p>Welcome to <em>Service Station</em>, a very basic Django website.</p>
+<p>Welcome to <em style="color:brown;">Service Station</em>, a very basic Django website.</p>
 <p>The Service Station has the following content:</p>
-<h1>:(</h1>
+{% load static %}<img src="{% static "media/service.jpg" %}" alt="service station" width="400" height="250"/>
 {% if not request.user.is_staff %}
 <div class="row">
-    <h3><a href="{% url 'application_create' %}">Make an order application!</a></h3>
+    <h3><a href="{% url 'application_create' %}" style=" color:darkorchid;">Make an order application!</a></h3>
 </div>
 {% endif %}
 {% endblock %}

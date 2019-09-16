@@ -13,6 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
+from django.conf.urls.static import static
+from django.conf import settings
+from django.views.generic import RedirectView
+from django.urls import include
 from django.contrib import admin
 from django.urls import path
 
@@ -21,22 +26,17 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-from django.urls import include
 urlpatterns += [
     path('station/', include('stationApp.urls')),
 ]
 
-from django.views.generic import RedirectView
 urlpatterns += [
     path('', RedirectView.as_view(url='/station/', permanent=True)),
 ]
 
-from django.conf import settings
-from django.conf.urls.static import static
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-#Add Django site authentication urls (for login, logout, password management)
-from django.conf.urls import url
+# Add Django site authentication urls (for login, logout, password management)
 
 urlpatterns += [
     url(r'^accounts/', include('django.contrib.auth.urls')),
