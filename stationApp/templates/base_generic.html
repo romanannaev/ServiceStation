@@ -26,7 +26,7 @@
 
 </head>
 
-<body>
+<body id="bg" style="background-image: url('{% static "media/images/fon.JPG" %}')";>
 
     <div class="container-fluid">
 
@@ -43,7 +43,7 @@
                 </ul>
                 {% if user.is_staff %}
                 <ul class="sidebar-nav">
-                    <li>Staff: {{ user.get_username }}</li>
+                    <li style="color:Lime;">Staff: {{ user.get_username }}</li>
                     <li><a href="{% url 'clients' %}">All Clients</a></li>
                     <li><a href="{% url 'cars' %}">All Cars</a></li>
                     <li><a href="{% url 'orders' %}">All Orders</a></li>

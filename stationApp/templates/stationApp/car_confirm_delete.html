@@ -12,8 +12,8 @@
 
 		{% if order.status == 'p' %}
 
-			<h3>You not can delete this car.This order isn't finished!</h3><a href="{% url 'order-detail' order.pk %}">
-				( INFORMATION)</a>
+			<h3>You not can delete this car.This order isn't finished!<a href="{% url 'order-detail' order.pk %}">
+				( INFORMATION)</a></h3>
 
 		{% endif %}
 
@@ -25,7 +25,7 @@
 
 	<form action="" method="POST">
 		{% csrf_token %}
-		<input type="submit" action="" value="Yes, delete." />
+		<input id="two" type="submit" action="" value="Yes, delete." />
 	</form>
 
 {% endif %}

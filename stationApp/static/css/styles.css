@@ -28,3 +28,39 @@
 a.edit, a.delete {
     display: none;
 }
+
+#bg{
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+    background-color: #404858;
+    background-blend-mode: multiply;
+}
+
+p {
+    font-size: 25px;
+    color: rgba(190, 80, 172, 0.842);
+}
+
+#one {
+    color: rgba(65, 168, 87, 0.856);
+}
+
+h1 {
+    color: #1d51b8;
+}
+
+h4 {
+    color: #7335c5;
+}
+
+#two {
+    color: rgba(255, 0, 0, 0.603);
+    border: 2px solid rgba(196, 24, 24, 0.39);
+    border-radius: 5px;
+}
+
+h3 {
+    color: #e41212;
+}
