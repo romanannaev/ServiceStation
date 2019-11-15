@@ -15,7 +15,7 @@ def index(request):
     """
     return render(
         request,
-        'index.html',
+        'main_index.html',
     )
 
 
